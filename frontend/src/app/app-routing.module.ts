@@ -18,11 +18,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path:'listTaks',
+    path:'listTask',
     component: ListTaskComponent,
   },
   {
-    path:'saveTaks',
+    path:'saveTask',
     component: SaveTaskComponent,
   },
   {
