@@ -11,6 +11,8 @@ import { SaveTaskComponent } from './board/save-task/save-task.component';
 import { LoginComponent } from './home/login/login.component';
 import { RegisterComponent } from './home/register/register.component';
 
+import { AuthGuard } from "./guard/auth.guard";
+
 const routes: Routes = [
   {
     path:'',
@@ -20,6 +22,7 @@ const routes: Routes = [
   {
     path:'listTask',
     component: ListTaskComponent,
+    canActivate:[AuthGuard],
   },
   {
     path:'saveTask',
@@ -36,26 +39,32 @@ const routes: Routes = [
   {
     path:'listUser',
     component: ListUserComponent,
+    canActivate:[AuthGuard],
   },
   {
     path:'registerUser',
     component: RegisterUserComponent,
+    canActivate:[AuthGuard],
   },
   {
     path:'updateUser',
     component: UpdateUserComponent,
+    canActivate:[AuthGuard],
   },
   {
     path:'registerRole',
     component: RegisterRoleComponent,
+    canActivate:[AuthGuard],
   },
   {
     path:'listRole',
     component: ListRoleComponent,
+    canActivate:[AuthGuard],
   },
   {
     path:'updateRole',
     component: UpdateRoleComponent,
+    canActivate:[AuthGuard],
   },
 ];
 
