@@ -29,9 +29,35 @@ export class UserService {
     return localStorage.getItem('token');
   }
 
-  logout(){
-    localStorage.removeItem('token')
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this._router.navigate(['/login']);
   }
+
+  isAdmin() {
+    return localStorage.getItem('role') === 'admin' ? true : false;
+  }
+
+  getRole(email: string) {
+    return this._http.get<any>(this.env + 'user/getRole/' + email);
+  }
+
+  listUser(name: string) {
+    return this._http.get<any>(this.env + 'user/listUsers/' + name);
+  }
+
+  updateUser(user: any) {
+    return this._http.put<any>(this.env + 'user/updateUser', user);
+  }
+
+  deleteUser(user: any) {
+    return this._http.put<any>(this.env + 'user/deleteUser', user);
+  }
+
+  registerAdmin(user: any) {
+    return this._http.post<any>(this.env + 'user/registerAdmin', user);
+  }
+
 
 }

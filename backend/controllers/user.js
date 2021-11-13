@@ -104,6 +104,7 @@ const registerAdmin = async (req, res) => {
     return res.status(400).send("Process failed: Incomplete data");
 
   let validId = await mongoose.Types.ObjectId.isValid(req.body.roleId);
+  
   if (!validId) return res.status(400).send("Invalid role ID");
 
   let existingUser = await User.findOne({ email: req.body.email });
@@ -130,6 +131,25 @@ const registerAdmin = async (req, res) => {
   }
 };
 
+const listUserAll = async (req, res) => {
+  const users = await User.find({ name: new RegExp(req.params["name"], "i") })
+    .populate("roleId")
+    .exec();
+  if (!users || users.length === 0)
+    return res.status(400).send("No search results");
+  return res.status(200).send({ users });
+};
+
+const getRole = async (req, res) => {
+  const users = await User.findOne({ email: req.params.email })
+    .populate("roleId")
+    .exec();
+  if (!users || users.length === 0)
+    return res.status(400).send("No search results");
+  const role = users.roleId.name;
+  return res.status(200).send({ role });
+};
+
 module.exports = {
   registerUser,
   login,
@@ -137,4 +157,6 @@ module.exports = {
   updateUser,
   deleteUser,
   registerAdmin,
+  getRole,
+  listUserAll,
 };

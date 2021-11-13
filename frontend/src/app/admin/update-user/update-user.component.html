@@ -1,1 +1,29 @@
-<p>update-user works!</p>
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Actualiza usuario</mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-form-field>
+          <input
+            [(ngModel)]="data.name"
+            type="text"
+            name=""
+            id=""
+            placeholder="name"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            [(ngModel)]="data.email"
+            type="email"
+            disabled
+          />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button class="button" [mat-dialog-close]="true">No</button>
+      <button mat-button class="button" (click)="updateUser()">Si</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

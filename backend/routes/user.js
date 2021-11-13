@@ -24,4 +24,6 @@ router.post(
   UserController.registerAdmin
 );
 
+router.get("/getRole/:email", Auth, ValidateUser, UserController.getRole);
+
 module.exports = router;

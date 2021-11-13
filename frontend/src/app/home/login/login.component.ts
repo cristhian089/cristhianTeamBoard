@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
           console.log(res);
           localStorage.setItem('token', res.jwtToken);
           this._router.navigate(['/listTask']);
+          this.getRole(this.loginData.email);
           this.loginData = {};
         },
         (err) => {
@@ -50,6 +51,17 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }
+
+  getRole(email: string) {
+    this._userService.getRole(email).subscribe(
+      (res) => {
+        localStorage.setItem('role', res.role);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   openSnackBarError() {
